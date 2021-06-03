@@ -1,5 +1,7 @@
 const express = require('express');
 
+const morgan = require('morgan');
+
 const app = express();
 
 const routes = require('./routes');
@@ -13,6 +15,10 @@ app.engine('handlebars', handlebars({defaultLayout: 'main'}));
 app.set('view engine','handlebars');
 
 app.use(express.json());
+
+app.use(express.urlencoded( {extended: true }));
+
+app.use(morgan("dev"));
 
 app.use(routes);
 
