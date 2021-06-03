@@ -4,7 +4,9 @@ const routes = express.Router();
 
 routes.get('/', (HttpRequest, HttpResponse) => {
 
-    return HttpResponse.json({ Hello: 'World'});
+    teste = "teste";
+
+    return HttpResponse.render('login/login');
 
 })
 

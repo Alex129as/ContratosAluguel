@@ -4,27 +4,31 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
    
     return await 
-      queryInterface.createTable('CAUSERS', 
+      queryInterface.createTable('causers', 
         {   
-          CAUSU_ID: {
+          causu_id: {
               type: Sequelize.INTEGER,
               primaryKey:  true,
               autoIncrement: true,
               allowNull: false
           },
-          CAUSU_NOME: {
+          causu_nome: {
             type: Sequelize.STRING,
             allowNull: false
           },
-          CAUSU_EMAIL: {
+          causu_email: {
             type: Sequelize.STRING,
             allowNull: false
           },
-          CREATED_AT: {
+          causu_password: {
+            type: Sequelize.STRING,
+            allowNull: false
+          },
+          created_ad: {
             type: Sequelize.DATE,
             allowNull: false
           },
-          DELETED_AT:{
+          deleted_at:{
             type: Sequelize.DATE,
             allowNull: false
           }
@@ -35,7 +39,7 @@ module.exports = {
 
   down: async (queryInterface, Sequelize) => {
    
-      return await queryInterface.dropTable('users');
+      return await queryInterface.dropTable('causers');
     
   }
 };
