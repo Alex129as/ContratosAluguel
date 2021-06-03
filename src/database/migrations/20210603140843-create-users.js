@@ -16,22 +16,38 @@ module.exports = {
             type: Sequelize.STRING,
             allowNull: false
           },
+          causu_cpf: {
+            type:  Sequelize.STRING(14),
+            allowNull: false
+          },
           causu_email: {
             type: Sequelize.STRING,
             allowNull: false
           },
+          causu_username: {
+            type: Sequelize.STRING(50),
+            allowNull: false,
+          },
           causu_password: {
-            type: Sequelize.STRING,
+            type: Sequelize.STRING(255),
             allowNull: false
           },
-          created_ad: {
+          causu_ativo: {
+            type: Sequelize.BOOLEAN,
+            allowNull: false
+          },
+          created_at: {
+            type: Sequelize.DATE,
+            allowNull: false
+          },
+          updated_at:{
             type: Sequelize.DATE,
             allowNull: false
           },
           deleted_at:{
             type: Sequelize.DATE,
-            allowNull: false
-          }
+            allowNull: true
+          },
 
         });
 

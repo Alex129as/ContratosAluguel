@@ -4,6 +4,8 @@ const app = express();
 
 const routes = require('./routes');
 
+require('./database/index');
+
 const handlebars = require('express-handlebars');
 
 app.engine('handlebars', handlebars({defaultLayout: 'main'}));

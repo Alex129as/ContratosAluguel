@@ -1,5 +1,7 @@
 const express = require('express');
 
+const UserController = require('./controllers/UserController');
+
 const routes = express.Router();
 
 routes.get('/', (HttpRequest, HttpResponse) => {
@@ -9,5 +11,7 @@ routes.get('/', (HttpRequest, HttpResponse) => {
     return HttpResponse.render('login/login');
 
 })
+
+routes.post('/cadastrar/user', UserController.store);
 
 module.exports = routes;
