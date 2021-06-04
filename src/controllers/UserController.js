@@ -2,7 +2,7 @@ const User = require('../database/models/UserModel');
 
 const {Op} = require('sequelize')
 
-module.exports ={
+module.exports = {
 
      async store (HttpRequest, HttpResponse) {
         

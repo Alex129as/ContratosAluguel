@@ -32,7 +32,7 @@ module.exports = {
         fileSize: 10 * 1024 * 1024
 
     },
-    filFilter: (HttpRequest, file, CallBack) => {
+    fileFilter: (HttpRequest, file, CallBack) => {
         const allowedMimes = [
             'image/jpeg',
             'image/pjpeg',
@@ -42,11 +42,11 @@ module.exports = {
 
         if (allowedMimes.includes(file.mimetype)){
 
-            CalBack(null, true);
+            CallBack(null, true);
 
         }else{
 
-            CallBack(new Error("Invalid file type."));
+            CallBack(new Error("Invalid Type File"));
 
         }
     }

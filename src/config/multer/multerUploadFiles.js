@@ -32,7 +32,7 @@ module.exports = {
         fileSize: 20 * 1024 * 1024
 
     },
-    filFilter: (HttpRequest, file, CallBack) => {
+    fileFilter: (HttpRequest, file, CallBack) => {
         const allowedMimes = [
             'file/pdf',
             'file/xls',
@@ -44,7 +44,7 @@ module.exports = {
 
         if (allowedMimes.includes(file.mimetype)){
 
-            CalBack(null, true);
+            CallBack(null, true);
 
         }else{
 

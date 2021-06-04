@@ -32,7 +32,7 @@ module.exports = {
         fileSize: 10 * 1024 * 1024
 
     },
-    filFilter: (HttpRequest, file, CallBack) => {
+    fileFilter: (HttpRequest, file, CallBack) => {
         const allowedMimes = [
             'image/jpeg',
             'image/pjpeg',
