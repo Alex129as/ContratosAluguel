@@ -1,14 +1,24 @@
 const express = require('express');
 
+const expressSesion = require('express-session');
+
 const morgan = require('morgan');
+
+const handlebars = require('express-handlebars');
 
 const app = express();
 
-const routes = require('./routes');
+const routes = require('./src/routes/routes');
 
-require('./database/index');
+require('./src/database/index');
 
-const handlebars = require('express-handlebars');
+app.use(expressSesion({ 
+        secret: '3b04f61162bf671d231545e9129c32b6',
+        saveUninitialized: true,
+        resave: true
+}));
+
+app.use(express.static(__dirname + "/public/"))
 
 app.engine('handlebars', handlebars({defaultLayout: 'main'}));
 

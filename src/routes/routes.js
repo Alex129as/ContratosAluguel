@@ -2,23 +2,26 @@ const express = require('express');
 
 const multer = require('multer');
 
-const multerPerfilsConfig = require('./config/multer/multerUploadPerfil');
+const multerPerfilsConfig = require('../config/multer/multerUploadPerfil');
 
-const multerImagesConfig = require('./config/multer/multerUploadImages');
+const multerImagesConfig = require('../config/multer/multerUploadImages');
 
-const multerFilesConfig = require('./config/multer/multerUploadFiles');
+const multerFilesConfig = require('../config/multer/multerUploadFiles');
 
-const UserController = require('./controllers/UserController');
+const UserController = require('../controllers/UserController');
+
+const AuthController = require('../controllers/AuthController');
 
 const routes = express.Router();
 
-routes.get('/', (HttpRequest, HttpResponse) => {
 
-    return HttpResponse.render('login/login');
+routes.get('/', AuthController.UserIsAutenticade);
 
-})
+routes.get('/dashboard', AuthController.UserIsAutenticade);
 
 routes.post('/cadastrar/user', UserController.store);
+
+routes.post('/auth/user', AuthController.AuthUser);
 
 routes.post('/cadastrar/imagem/perfil/user', multer(multerPerfilsConfig).single('imgUser'), (HttpRequest, HttpResponse) =>{
 
