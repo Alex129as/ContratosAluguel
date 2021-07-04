@@ -2,8 +2,6 @@ const User = require('../database/models/UserModel');
 
 const bcrypt = require('bcrypt');
 
-const expressSesion = require('express-session');
-
 module.exports = {
 
     async AuthUser(HttpRequest, HttpResponse){

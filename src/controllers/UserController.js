@@ -2,7 +2,7 @@ const User = require('../database/models/UserModel');
 
 const bcrypt = require('bcrypt');
 
-const {Op} = require('sequelize')
+const {Op} = require('sequelize');
 
 module.exports = {
 
@@ -56,7 +56,7 @@ module.exports = {
                             .status(200)
                             .json({
                                 Menssage: "Usuário Cadastrado com Sucesso.",
-                                user: user
+                                status: 200
                             });
             
             }catch(e){
