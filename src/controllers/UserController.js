@@ -9,17 +9,8 @@ module.exports = {
      async store (HttpRequest, HttpResponse) {
         
         const {nome, cpf, email, usuario , password } = HttpRequest.body;
-
-        const senha = await bcrypt.hash(password, 10, (error, hash) => {
-            if(error)
-                return HttpResponse.status(500).json({
-                    message: 'Não foi Posssivel Criptografar A senha.',
-                    error: error.message,
-                    TextError: error.stack
-                });
-
-            return hash;    
-        });
+                
+        const senha =  await bcrypt.hashSync(password, 10);
 
         const userExists = await User.findAll({  
             where: {
@@ -30,8 +21,6 @@ module.exports = {
                 ]
             }
         });
-
-        console.log(senha);
 
         if (userExists.length === 0){
 
@@ -65,7 +54,8 @@ module.exports = {
                             .status(500)
                             .json({
                                 message : e.toString(),
-                                originError : e.stack
+                                originError : e.stack,
+                                senha: ""+senha
                             });
 
             }

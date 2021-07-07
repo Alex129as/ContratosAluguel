@@ -108,3 +108,84 @@
       </div>
     </div>
 </body>
+
+<script type="text/javascript">
+
+ const form = window.document.getElementById('formlogin');
+ const spinner  = "<div class='align-items-center'>" 
+                + "  <div class='spinner-border text-primary' role='status'></div>"
+                + "  <span class='sr-visible' style='margin-buttom: 15px'>Validando Credenciais de acesso...</span>"
+                + "</div>"; 
+
+ form.addEventListener('submit', async (event) => {
+
+   event.preventDefault();
+
+   let usuario = window.document.getElementById('user').value; 
+   let password = window.document.getElementById('password').value;
+
+   swal({
+     html: spinner,
+     showConfirmButton: false
+   });
+   
+   const result = await axios({
+      method: 'POST',
+      url: '/auth/user',
+      data: {
+        usuario,
+        password
+      },
+      dataType: 'JSON',
+      responseType: 'JSON'
+    }).then((response) => {
+
+      if(response.data.typeMenssage === "success" && response.data.codeMessage === 200){
+
+        swal.close();
+
+        swal({
+          toast: true,
+          title: response.data.Menssage,
+          type: response.data.typeMenssage,
+          timer: 1000,
+          showConfirmButton: false,
+          position: "top-end"
+        }).then( () => {
+
+          location.href = '/dashboard'
+
+        });
+
+      }else if (response.data.typeMenssage === "error" && response.data.codeMenssage === 500){
+
+        swal.close();
+
+        swal({
+          type: response.data.typeMenssage,
+          title: response.data.message,
+          text: response.data.originError 
+        });
+
+      }else{
+        
+        swal.close();
+
+        swal({
+          type: response.data.typeMenssage,
+          title: response.data.Menssage,
+          text: 'Tente Novamente!'
+        });
+
+      }
+
+    });
+
+    return result; 
+
+ });
+
+
+
+
+</script>
